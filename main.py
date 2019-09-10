@@ -16,7 +16,7 @@ def read_data_from_input():
 
 
 def split_line(line):
-    """result ['11:00', '15:20', '[]']"""
+    """result '11:00-15:20 []' -> ['11:00', '15:20', '[]']"""
     result = []
     temp = line.split('-')
     result.append(temp[0])
@@ -27,13 +27,13 @@ def split_line(line):
 
 
 def convert_seconds_to_hours(seconds):
-    """01:12 without seconds"""
+    """'1:12' without seconds"""
     td = datetime.timedelta(seconds=seconds)
     return ':'.join(str(td).split(':')[:2])
 
 
 def get_diff(start_time, end_time):
-    """ in seconds """
+    """(format start_time/end_time -> 11:12) in seconds """
     time_start = datetime.datetime.strptime(start_time, "%H:%M")
     time_end = datetime.datetime.strptime(end_time, "%H:%M")
     diff = time_end - time_start
